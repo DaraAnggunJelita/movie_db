@@ -2,9 +2,15 @@
 
 namespace Database\Seeders;
 
+use CategorySeeder;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Movie;
+use App\Models\Category;
+use function Pest\Laravel\call;
+
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,10 +19,48 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Movie::factory(50)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        Movie::factory(10)->create();
+
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+
+        // $this->call(CategorySeeder::class);
+
+        // DB::table('categories')->insert([
+        //     [
+        //         'category_name' => 'Action',
+        //         'description'   => 'Film dengan adegan-adegan penuh aksi dan ketegangan.',
+        //         'created_at'    => now(),
+        //         'updated_at'    => now(),
+        //     ],
+        //     [
+        //         'category_name' => 'Comedy',
+        //         'description'   => 'Film yang bertujuan untuk menghibur dan mengundang tawa.',
+        //         'created_at'    => now(),
+        //         'updated_at'    => now(),
+        //     ],
+        //     [
+        //         'category_name' => 'Drama',
+        //         'description'   => 'Film yang berfokus pada pengembangan karakter dan konflik emosional.',
+        //         'created_at'    => now(),
+        //         'updated_at'    => now(),
+        //     ],
+        //     [
+        //         'category_name' => 'Sci-Fi',
+        //         'description'   => 'Film dengan latar belakang ilmiah dan teknologi futuristik.',
+        //         'created_at'    => now(),
+        //         'updated_at'    => now(),
+        //     ],
+        //     [
+        //         'category_name' => 'Romance',
+        //         'description'   => 'Film yang berpusat pada kisah cinta dan hubungan romantis.',
+        //         'created_at'    => now(),
+        //         'updated_at'    => now(),
+        //     ],
+        // ]);
     }
 }
