@@ -18,6 +18,11 @@ public function homepage(){
      $movies = Movie:: latest()->paginate(10);
         return view('layouts.home', compact('movies'));
    }
+   public function detail($id, $slug)
+   {
+    $movies = Movie::find($id);
+    return view('movies.detailmovie',compact('movies'));
+   }
 
     public function create()
     {

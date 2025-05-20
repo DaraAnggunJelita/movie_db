@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Movie extends Model
 {
@@ -15,7 +17,7 @@ class Movie extends Model
         'year', 'actors', 'synopsis'
     ];
 
-    public function category()
+    public function category():BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
