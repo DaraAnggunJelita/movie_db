@@ -1,10 +1,6 @@
 <?php
 
-
-
 namespace App\Http\Controllers;
-
-
 
 use App\Models\Movie;
 
@@ -41,18 +37,13 @@ class MovieController extends Controller
     }
 
 
-
-
-
-
-
     public function index()
 
     {
 
         $movies = Movie::latest()->paginate(10);
 
-        return view('movies.index', compact('movies'));
+        return view('movies.movie', compact('movies'));
     }
 
 

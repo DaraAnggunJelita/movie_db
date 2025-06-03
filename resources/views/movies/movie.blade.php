@@ -32,7 +32,7 @@
 
                             <td class="text-center">{{ $movie->id }}</td>
                             <td class="text-center">
-                                <img src="{{ $movie->cover_image }}" alt="Cover" class="img-thumbnail"
+                                <img src="{{ asset('storage/' .$movie->cover_image)}}" alt="Cover" class="img-thumbnail"
                                     style="width: 100px; height: 120px; object-fit: cover;">
                             </td>
                             <td>{{ $movie->title }}</td>
