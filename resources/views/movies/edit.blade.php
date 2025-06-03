@@ -9,7 +9,7 @@
             <h4 class="mb-0">Edit Movie</h4>
         </div>
         <div class="card-body p-4">
-            <form action="{{ route('movie.update', $movie->id) }}" method="POST">
+            <form action="{{ route('movie.update', $movie->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -17,7 +17,7 @@
                 <div class="row mb-3">
                     <label for="title" class="col-sm-3 col-form-label fw-semibold">Title</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="title" name="title"
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
                             value="{{ old('title', $movie->title) }}" required>
                         @error('title')
                             <div class="text-danger">{{ $message }}</div>
@@ -29,7 +29,7 @@
                 <div class="row mb-3">
                     <label for="slug" class="col-sm-3 col-form-label fw-semibold">Slug</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="slug" name="slug"
+                        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
                             value="{{ old('slug', $movie->slug) }}" required>
                         @error('slug')
                             <div class="text-danger">{{ $message }}</div>
@@ -41,7 +41,7 @@
                 <div class="row mb-3">
                     <label for="synopsis" class="col-sm-3 col-form-label fw-semibold">Synopsis</label>
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="synopsis" name="synopsis" rows="4">{{ old('synopsis', $movie->synopsis) }}</textarea>
+                        <textarea class="form-control @error('synopsis') is-invalid @enderror" id="synopsis" name="synopsis" rows="4">{{ old('synopsis', $movie->synopsis) }}</textarea>
                         @error('synopsis')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -52,7 +52,7 @@
                 <div class="row mb-3">
                     <label for="category_id" class="col-sm-3 col-form-label fw-semibold">Category</label>
                     <div class="col-sm-9">
-                        <select class="form-select" id="category_id" name="category_id" required>
+                        <select class="form-select @error('category_id') is-invalid @enderror" id="category_id" name="category_id" required>
                             <option value="">-- Select Category --</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}"
@@ -71,7 +71,7 @@
                 <div class="row mb-3">
                     <label for="year" class="col-sm-3 col-form-label fw-semibold">Year</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" id="year" name="year"
+                        <input type="number" class="form-control @error('year') is-invalid @enderror" id="year" name="year"
                             value="{{ old('year', $movie->year) }}" required>
                         @error('year')
                             <div class="text-danger">{{ $message }}</div>
@@ -83,7 +83,7 @@
                 <div class="row mb-3">
                     <label for="actors" class="col-sm-3 col-form-label fw-semibold">Actors</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="actors" name="actors"
+                        <input type="text" class="form-control @error('actors') is-invalid @enderror" id="actors" name="actors"
                             value="{{ old('actors', $movie->actors) }}">
                         @error('actors')
                             <div class="text-danger">{{ $message }}</div>
@@ -93,10 +93,9 @@
 
                 {{-- Cover Image --}}
                 <div class="row mb-3">
-                    <label for="cover_image" class="col-sm-3 col-form-label fw-semibold">Cover Image URL</label>
+                    <label for="cover_image" class="col-sm-3 col-form-label fw-semibold">Cover Image</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="cover_image" name="cover_image"
-                            value="{{ old('cover_image', $movie->cover_image) }}">
+                        <input type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image" name="cover_image" accept="image/*">
                         @error('cover_image')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
