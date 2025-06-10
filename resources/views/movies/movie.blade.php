@@ -32,7 +32,7 @@
 
                             <td class="text-center">{{ $movie->id }}</td>
                             <td class="text-center">
-                                <img src="{{ asset('storage/' .$movie->cover_image)}}" alt="Cover" class="img-thumbnail"
+                                <img src="{{ asset('storage/' . $movie->cover_image) }}" alt="Cover" class="img-thumbnail"
                                     style="width: 100px; height: 120px; object-fit: cover;">
                             </td>
                             <td>{{ $movie->title }}</td>
@@ -46,14 +46,16 @@
                                 <a href="{{ route('movie.edit', $movie->id) }}" class="btn btn-sm btn-warning mb-1">
                                     <i class="bi bi-pencil-fill"></i>
                                 </a>
-                                <form action="{{ route('movie.destroy', $movie->id) }}" method="POST"
-                                    onsubmit="return confirm('Yakin ingin menghapus movie ini?')" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </button>
-                                </form>
+                                @can('delete')
+                                    <form action="{{ route('movie.destroy', $movie->id) }}" method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus movie ini?')" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach
